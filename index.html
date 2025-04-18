@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gopi Krishna | Vue Portfolio</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>{{ name }}</h1>
+      <p>{{ title }}</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>{{ about }}</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-box" v-for="project in projects" :key="project.name">
+        <h3>{{ project.name }}</h3>
+        <p><strong>Tools:</strong> {{ project.tools }}</p>
+        <p>{{ project.description }}</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <ul class="skills-grid">
+        <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+      </ul>
+    </section>
+
+    <section id="services">
+      <h2>Services</h2>
+      <ul class="skills-grid">
+        <li v-for="service in services" :key="service">{{ service }}</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a :href="`mailto:${email}`">{{ email }}</a></p>
+      <p>GitHub: <a :href="github" target="_blank">{{ github }}</a></p>
+
+      <form class="contact-form" @submit.prevent="submitted = true">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+        <textarea rows="5" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Message</button>
+        <p v-if="submitted" class="thank-you">Thank you for your message!</p>
+      </form>
+    </section>
+
+    <footer>
+      <p>© 2025 {{ name }}</p>
+    </footer>
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          name: "Gopi Krishna Narra",
+          title: "Full Stack Developer | Web Designer | LMS Specialist",
+          email: "narragopi88@gmail.com",
+          github: "https://github.com/Gopi45578",
+          submitted: false,
+          about: `I’m a Software Developer with 3+ years of experience in full-stack development, UI/UX design, and educational technology. I hold a Master's in MIS from the University of Nebraska at Omaha and a Bachelor's in Computer Science.`,
+          projects: [
+            {
+              name: "Educational Outcomes Dashboard",
+              tools: "Python, SQL, Power BI, Tableau",
+              description: "Analyzed student data to improve after-school programs and outcomes."
+            },
+            {
+              name: "LMS + CRM Integration",
+              tools: "React, Salesforce, Gravity Forms, Storyline 360",
+              description: "Created learning modules and integrated LMS with CRM platforms."
+            },
+            {
+              name: "Internet Banking Portal (PPS Project)",
+              tools: "Angular, Java, .NET, MSSQL",
+              description: "Led the development of responsive online banking applications."
+            }
+          ],
+          skills: [
+            "React.js", "Next.js", "Angular", "Vue.js", "JavaScript", "TypeScript", "HTML", "CSS",
+            "Node.js", "Java", ".NET", "Spring", "Hibernate", "SQL", "MongoDB", "PostgreSQL",
+            "Git", "GitHub", "GitLab", "Docker", "Kubernetes", "Jenkins", "AWS", "Azure", "WordPress"
+          ],
+          services: [
+            "Full Stack Development", "eLearning Course Design", "WordPress Development & SEO",
+            "LMS & CRM Integration", "Cloud Deployment", "Dashboard Automation"
+          ]
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
